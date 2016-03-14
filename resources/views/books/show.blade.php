@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Show Book</title>
-    <meta charset='utf-8'>
-    <link href="/css/foobooks.css" type='text/css' rel='stylesheet'>
-</head>
-<body>
+@extends('layouts.master')
 
-    <header>
-        <img
-        src='http://making-the-internet.s3.amazonaws.com/laravel-foobooks-logo@2x.png'
-        style='width:300px'
-        alt='Foobooks Logo'>
-    </header>
+@section('title')
+    Show book {{ $title }}
+@stop
 
-    <section>
-        {{ $abc }}
+@section('head')
+    <link href='/css/book/show.css' rel='stylesheet'>
+@stop
+
+@section('content')
+    @if(isset($title))
         <h1>Show book: {{ $title }}</h1>
-    </section>
+    @else
+        <h1>No book chosen!</h1>
+    @endif
+@stop
 
-    <footer>
-        &copy; {{ date('Y') }}
-    </footer>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-</body>
-</html>
+@section('body')
+    <script src="/js/book/show.js"></script>
+@stop
