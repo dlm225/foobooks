@@ -13,15 +13,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/book/{id}', 'BookController@getShow');
 
     Route::get('/practice', function() {
-        $data = Array('foo' => 'bar');
-        Debugbar::info($data);
-        Debugbar::error('Error!');
-        Debugbar::warning('Watch out…');
-        Debugbar::addMessage('Another message', 'mylabel');
 
-        return 'Practice';
+        $random = new Random();
+        return $random->getRandomString(10);
 
-        return '';
     });
 
 });
