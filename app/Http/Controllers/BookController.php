@@ -18,7 +18,7 @@ class BookController extends Controller {
      */
     public function getShow($title) {
         return view('books.show')
-            ->with('title', $title);
+            ->with('title', $title)
             ->with('abc', '123');
         #return 'Show an individual book: '.$title;
     }
