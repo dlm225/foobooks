@@ -15,6 +15,7 @@
     </header>
 
     <section>
+        {{ $abc }}
         <h1>Show book: {{ $title }}</h1>
     </section>
 
