@@ -13,8 +13,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/book/{id}', 'BookController@getShow');
 
     Route::get('/practice', function() {
-        echo 'app.url: '.config('app.url').'<br />';
-        echo 'app.env: '.config('app.env');
+        $data = Array('foo' => 'bar');
+        Debugbar::info($data);
+        Debugbar::error('Error!');
+        Debugbar::warning('Watch out…');
+        Debugbar::addMessage('Another message', 'mylabel');
+
+        return 'Practice';
+
         return '';
     });
 
