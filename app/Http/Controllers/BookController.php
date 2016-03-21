@@ -20,25 +20,20 @@ class BookController extends Controller {
         return view('books.show')
             ->with('title', $title)
             ->with('abc', '123');
-        #return 'Show an individual book: '.$title;
     }
 
     /**
      * Responds to requests to GET /books/create
      */
     public function getCreate() {
-        $view = '<form method="POST" action="/book/create">';
-        $view .= csrf_field();
-        $view .= 'Book title: <input type="text" name="title">';
-        $view .= '<input type="submit">';
-        $view .= '</form>';
-        return $view;
+        return view('books.create');
     }
 
     /**
-     * Responds to requests to POST /books/create
+     * Responds to requests to POST /books/add
      */
-    public function postCreate() {
-        return 'Add the book: '.$_POST['title'];
+    public function postAdd($title = null) {
+        return view('books.add')
+            ->with('title', $title);
     }
 }
