@@ -36,4 +36,8 @@ class BookController extends Controller {
         return view('books.add')
             ->with('title', $title);
     }
+
+    public function postCreate(){
+        return redirect('/books');
+    }
 }

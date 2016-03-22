@@ -9,7 +9,7 @@ class MainController extends Controller {
     /**
     * Responds to requests to GET /(index)
     */
-    public function getIndex() {
+    public function index() {
         return view('main.index');
     }
 }

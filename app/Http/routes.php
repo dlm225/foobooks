@@ -2,12 +2,11 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/', 'MainController@getIndex');
+    Route::get('/', 'MainController@index');
     Route::get('/books', 'BookController@getIndex');
     Route::get('/book/create', 'BookController@getCreate');
     Route::post('/book/add', 'BookController@postAdd');
     Route::get('/book/show/{title?}', 'BookController@getShow');
-    Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
     Route::get('/practice', function() {
         $random = new Random();
@@ -19,5 +18,10 @@ Route::group(['middleware' => ['web']], function () {
             ->resize(60,60);
         return $image->response('jpg');
     });
+
+    # Restrict certain routes to local environment only
+    if(App::environment('local')) {
+        Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+    }
 
 });
