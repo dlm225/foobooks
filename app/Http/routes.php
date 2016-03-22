@@ -2,16 +2,12 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/', function () {
-        ##return view('welcome');
-        return 'Hello - welcome to my Laravel application!';
-    });
-
+    Route::get('/', 'MainController@getIndex');
     Route::get('/books', 'BookController@getIndex');
     Route::get('/book/create', 'BookController@getCreate');
     Route::post('/book/add', 'BookController@postAdd');
     Route::get('/book/show/{title?}', 'BookController@getShow');
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+    Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
     Route::get('/practice', function() {
         $random = new Random();

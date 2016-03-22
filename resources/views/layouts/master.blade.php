@@ -7,7 +7,12 @@
     </title>
 
     <meta charset='utf-8'>
-    <link href="/css/foobooks.css" type='text/css' rel='stylesheet'>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css">
+    <link href="/css/foobooks.css" rel='stylesheet'>
 
     {{-- Yield any page specific CSS files or anything else you might want in the <head> --}}
     @yield('head')
@@ -16,11 +21,20 @@
 <body>
 
     <header>
+        <a href="/">
         <img
         src='http://making-the-internet.s3.amazonaws.com/laravel-foobooks-logo@2x.png'
         style='width:300px'
         alt='Foobooks Logo'>
+        </a>
     </header>
+
+    <nav>
+        <ul>
+            <li><a href='/books'>View all books</a></li>
+            <li><a href='/book/create'>Add a new book</a></li>
+        </ul>
+    </nav>
 
     <section>
         {{-- Main page content will be yielded here --}}
@@ -28,7 +42,8 @@
     </section>
 
     <footer>
-        &copy; {{ date('Y') }}
+        &copy; {{ date('Y') }} &nbsp;&nbsp;
+        <a href='https://github.com/dlm225/foobooks' class='fa fa-github' target='blank'> View on Github </a>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
