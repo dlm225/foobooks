@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class BookController extends Controller {
 
@@ -32,9 +33,11 @@ class BookController extends Controller {
     /**
      * Responds to requests to POST /books/add
      */
-    public function postAdd($title = null) {
+    public function postAdd(Request $request) {
+        #dd($request);
+        #return 'Add the book: '.$request->input('title');
         return view('books.add')
-            ->with('title', $title);
+            ->with('title', $request->input('title'));
     }
 
     public function postCreate(){

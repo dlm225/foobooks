@@ -10,11 +10,16 @@
 
 @section('content')
     <br />
-    <form action="{{ url('book/add') }}" method="POST">
-        Book title to add:
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input name="title" type="text">
-        <input name="submit" type="submit">
+    <h1>Add a new book</h1>
+    <form method='POST' action='/book/add'>
+
+        {{ csrf_field() }}
+
+        <div class='form-group'>
+            <label>* Title:</label>
+            <input type='text' id='title' name='title'>
+        </div>
+        <button type="submit" class="btn btn-primary">Add book</button>
     </form>
     <br />
 @stop
