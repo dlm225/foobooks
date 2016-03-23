@@ -34,8 +34,10 @@ class BookController extends Controller {
      * Responds to requests to POST /books/add
      */
     public function postAdd(Request $request) {
-        #dd($request);
-        #return 'Add the book: '.$request->input('title');
+        $this->validate($request,[
+            'title' => 'required|min:3',
+            'author' => 'required|min:3']
+        );
         return view('books.add')
             ->with('title', $request->input('title'));
     }

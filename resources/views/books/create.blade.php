@@ -17,9 +17,22 @@
 
         <div class='form-group'>
             <label>* Title:</label>
-            <input type='text' id='title' name='title'>
+            {{ $errors->first('title') }}<br />
+            <input type='text' id='title' name='title' value='{{ old('title') }}'>
+            <label>* Author:</label>
+            {{ $errors->first('author') }}<br />
+            <input type='text' id='author' name='author' value='{{ old('author') }}'>
         </div>
-        <button type="submit" class="btn btn-primary">Add book</button>
+
+        <button type="submit" class="btn btn-primary">Add book</button><br />
+        {{-- <ul class=''>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}<br /></li>
+            @endforeach
+        </ul> --}}
+        @if(count($errors) > 0)
+            Please correct the errors above and try again
+        @endif
     </form>
     <br />
 @stop
