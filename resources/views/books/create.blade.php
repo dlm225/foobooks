@@ -5,7 +5,7 @@
 @stop
 
 @section('head')
-    <link href='/css/book/show.css' rel='stylesheet'>
+    <link href='/css/foobooks.css' rel='stylesheet'>
 @stop
 
 @section('content')
@@ -17,11 +17,11 @@
 
         <div class='form-group'>
             <label>* Title:</label>
-            {{ $errors->first('title') }}<br />
-            <input type='text' id='title' name='title' value='{{ old('title') }}'>
+            <input type='text' id='title' name='title' value='{{ old('title') }}'><br />
+            <div class='error'>{{ $errors->first('title') }}</div>
             <label>* Author:</label>
-            {{ $errors->first('author') }}<br />
-            <input type='text' id='author' name='author' value='{{ old('author') }}'>
+            <input type='text' id='author' name='author' value='{{ old('author') }}'><br />
+            <div class='error'>{{ $errors->first('author') }}</div>
         </div>
 
         <button type="submit" class="btn btn-primary">Add book</button><br />
@@ -31,7 +31,7 @@
             @endforeach
         </ul> --}}
         @if(count($errors) > 0)
-            Please correct the errors above and try again
+            <div class='error'>Please correct the errors above and try again</div>
         @endif
     </form>
     <br />
