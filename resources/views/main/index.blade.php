@@ -10,6 +10,8 @@
 
 @section('content')
     <h1>Welcome to FooBooks!</h1>
+
+
 @stop
 
 @section('body')
