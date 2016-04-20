@@ -28,6 +28,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/practice/ex16', 'PracticeController@getEx16');
     Route::get('/practice/ex17', 'PracticeController@getEx17');
     Route::get('/practice/ex18', 'PracticeController@getEx18');
+    Route::get('/practice/ex19', 'PracticeController@getEx19');
 
     Route::get('/practice', function() {
         $random = new Random();
