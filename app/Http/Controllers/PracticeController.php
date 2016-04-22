@@ -8,6 +8,29 @@ class PracticeController extends Controller
     /**
 	* Demonstrate association in a one to many relationship
 	*/
+
+    public function getEx21() {
+        $books = \App\Book::with('tags')->get();
+
+        foreach($books as $book) {
+            echo $book->title.'<br/>';
+            foreach($book->tags as $tag) {
+                echo $tag->name.'<br/>';
+            }
+            echo '<br/>';
+        }
+    }
+
+    public function getEx20() {
+        $book = \App\Book::where('title','=','The Great Gatsby')->first();
+
+        dump($book->tags);
+
+        foreach($book->tags as $tag) {
+            echo $tag->name.'<br/>';
+        }
+    }
+
     public function getEx19() {
         # Create an author we can associate a book with...
         $author = new \App\Author;

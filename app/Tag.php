@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Author extends Model
+class Tag extends Model
 {
     public function books() {
-        return $this->hasMany('\App\Book');
+        return $this->belongsToMany('\App\Book')->withTimestamps();
     }
 }
