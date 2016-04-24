@@ -11,7 +11,7 @@ class BookController extends Controller {
     * Responds to requests to GET /books
     */
     public function getIndex() {
-        $books = \App\Book::orderBy('id','desc')->get();
+        $books = \App\Book::with('author')->orderBy('id','desc')->get();
         return view('books.index')->with('books',$books);
     }
 
@@ -28,7 +28,8 @@ class BookController extends Controller {
      * Responds to requests to GET /books/create
      */
     public function getCreate() {
-        return view('books.create');
+        $authors_for_dropdown = \App\Author::authorsForDropdown();
+        return view('books.create')->with('authors_for_dropdown', $authors_for_dropdown);
     }
 
     /**
@@ -78,17 +79,36 @@ class BookController extends Controller {
 
     public function getEdit($id){
         $book = \App\Book::find($id);
-        return view('books.edit')->with('book',$book);
+
+        $authors_for_dropdown = \App\Author::authorsForDropdown();
+        $tags_for_checkboxes = \App\Tag::getTagsForCheckboxes();
+        $tags_for_this_book = [];
+        foreach($book->tags as $tag) {
+            $tags_for_this_book[] = $tag->id;
+        }
+
+        return view('books.edit')
+            ->with('book',$book)
+            ->with('authors_for_dropdown',$authors_for_dropdown)
+            ->with('tags_for_checkboxes',$tags_for_checkboxes)
+            ->with('tags_for_this_book',$tags_for_this_book);
     }
 
     public function postEdit(Request $request) {
         $book = \App\Book::find($request->id);
 
         $book->title = $request->title;
-        $book->author = $request->author;
+        $book->author_id = $request->author_id;
         $book->published = $request->published;
         $book->cover = $request->cover;
         $book->purchase_link = $request->purchase_link;
+        if($request->tags) {
+            $tags = $request->tags;
+        }
+        else {
+            $tags = [];
+        }
+        $book->tags()->sync($tags);
         $book->save();
 
         \Session::flash('message','Your changes were made.');

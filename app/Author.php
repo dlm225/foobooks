@@ -9,4 +9,16 @@ class Author extends Model
     public function books() {
         return $this->hasMany('\App\Book');
     }
+
+    public static function authorsForDropdown() {
+        # Get all authors
+        $authors = \App\Author::orderBy('last_name','ASC')->get();
+
+        # Build array for author's dropdown
+        $authors_for_dropdown = [];
+        foreach($authors as $author) {
+            $authors_for_dropdown[$author->id] = $author->last_name.', '.$author->first_name;
+        }
+        return $authors_for_dropdown;
+    }
 }
